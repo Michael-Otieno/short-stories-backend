@@ -174,25 +174,7 @@ def login():
     return make_response('Could not verify', 401, {'WWW-Authenticate' : 'Basic realm="Login required!"'})
 
 
-
-# @app.route('/new_stories',methods=['POST'])
-# def add_story():
-#     story=Story(title=request.json['title'],story=request.json['story'])
-
-#     db.session.add(story)
-#     db.session.commit()
-
-#     return {'id':story.id}
-
-
-# @app.route('/new_user',methods=['POST'])
-# def add_user():
-#     user=User(username=request.json['username'],email=request.json['email'],story=request.json['story'],password=request.json['password'])
-
-#     db.session.add(user)
-#     db.session.commit()
-
-#     return {'id':user.id}
-
+if __name__ == '__main__':
+    app.run(debug=True)
 
     
