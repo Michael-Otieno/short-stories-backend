@@ -5,6 +5,8 @@ import jwt
 from functools import wraps
 import datetime
 from flask_migrate import Migrate
+from flask_swagger_ui import get_swaggerui_blueprint
+from werkzeug.utils import send_from_directory
 
 
 
@@ -48,6 +50,25 @@ class Story(db.Model):
 def index():
     return 'Welcome to short story api'
 
+@app.route('/static/<path:path>')
+def send_static(path):
+    return send_from_directory('static', path)
+
+### swagger specific ###
+SWAGGER_URL = '/swagger'
+API_URL = '/static/swagger.json'
+swaggerui_blueprint = get_swaggerui_blueprint(
+    SWAGGER_URL,
+    API_URL,
+    config={
+        'app_name': "Short-Stories-Flask-API"
+    }
+)
+app.register_blueprint(swaggerui_blueprint, url_prefix=SWAGGER_URL)
+
+
+
+
 @app.route('/user/<username>',methods=['GET'])
 def get_user(username):
     user=User.query.filter_by(username=username).first()
@@ -60,7 +81,7 @@ def get_action():
     
     output =[]
     for story in stories:
-        story_data = {'title':story.title, 'genre':story.genre,'story':story.story}
+        story_data = {'title':story.title, 'genre':story.genre,'story':story.story,'author':story.user.username}
 
         output.append(story_data)
     return {'story':output}
@@ -72,7 +93,7 @@ def get_fantasy():
     
     output =[]
     for story in stories:
-        story_data = {'title':story.title, 'genre':story.genre,'story':story.story}
+        story_data = {'title':story.title, 'genre':story.genre,'story':story.story,'author':story.user.username}
 
         output.append(story_data)
     return {'story':output}
@@ -80,11 +101,11 @@ def get_fantasy():
 
 @app.route('/scifi', methods=['GET'])
 def get_scifi():
-    scifi = Story.query.filter_by(genre='scifi').all()
+    scifis = Story.query.filter_by(genre='scifi').all()
 
     output =[]
-    for scifi in scifi:
-        scifi_data = {'title':scifi.title, 'genre':scifi.genre,'scifi':scifi.story}
+    for scifi in scifis:
+        scifi_data = {'title':scifi.title, 'genre':scifi.genre,'scifi':scifi.story,'author':scifi.user.username}
 
         output.append(scifi_data)
     return {'scifi':output}
@@ -97,7 +118,7 @@ def get_stories():
 
     output =[]
     for story in stories:
-        story_data = {'title':story.title, 'genre':story.genre,'story':story.story}
+        story_data = {'title':story.title, 'genre':story.genre,'story':story.story,'author':story.user.username}
 
         output.append(story_data)
     return {'story':output}

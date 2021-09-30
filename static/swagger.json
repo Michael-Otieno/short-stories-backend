@@ -1,0 +1,181 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+      "description": "short stories flask api",
+      "version": "1.0.0",
+      "title": "Short-Stories-Flask-API",
+      "license": {
+        "name": "MIT",
+        "url": "https://opensource.org/licenses/MIT"
+      }
+    },
+    "servers":[
+        {
+            "url":"/"
+        }
+    ],
+    "paths":{
+        "/user/<username>":{
+            "parameters": [
+                {
+                  "username": "string",
+                  "email": "string",
+                  "password":"string",
+                  "required": true,
+                  "description": "user details",
+                  "type": "string"
+                }
+              ],
+            "get":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Returns user",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/action":{
+            "get":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Returns stories",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/fantasy":{
+            "get":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Returns stories",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/scifi":{
+            "get":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Returns stories",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/stories":{
+            "get":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Returns stories",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/new_user":{
+            "post":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Creates a user ",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/new_story":{
+            "post":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Returns stories",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        },
+        "/login":{
+            "post":{
+                "tags":[
+                    "User"
+                ],
+                "summary": "Logs in a user",
+                "responses": {
+                    "200":{
+                        "description": "OK",
+                        "schema": {
+                            "$ref":""
+                        }
+                    },
+                    "400": {
+                        "description": "Failed. Bad post data."
+                      }
+                }
+            }
+        }
+    } 
+}   
