@@ -7,19 +7,21 @@ import datetime
 from flask_migrate import Migrate
 from flask_swagger_ui import get_swaggerui_blueprint
 from werkzeug.utils import send_from_directory
+# from flask_script import Server
 import os
-
 
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] ='ABC123'
 
 
-app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://moringa:1234@localhost/shortstory'
+# app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://moringa:1234@localhost/short'
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
+# app.add_command('server',Server)
+# app.add_command('db',MigrateCommand)
 
 
 class User(db.Model):
