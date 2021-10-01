@@ -161,7 +161,7 @@ def token_required(f):
     return decorated
 
 @app.route('/new_story',methods=['POST'])
-@token_required
+# @token_required
 def add_story(current_user):
     data=request.get_json()
     new_story=Story(title=data["title"],genre=data["genre"],story=data["story"],user_id=current_user.id)
