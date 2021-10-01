@@ -15,10 +15,10 @@ app = Flask(__name__)
 app.config['SECRET_KEY'] ='ABC123'
 
 
-# app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://moringa:1234@localhost/short'
-SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
-if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
-    SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
+app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://moringa:1234@localhost/short'
+# SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+# if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+#     SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
@@ -167,7 +167,7 @@ def token_required(f):
     return decorated
 
 @app.route('/new_story',methods=['POST'])
-# @token_required
+@token_required
 def add_story(current_user):
     data=request.get_json()
     new_story=Story(title=data["title"],genre=data["genre"],story=data["story"],user_id=current_user.id)
