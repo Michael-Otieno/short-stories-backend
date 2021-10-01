@@ -16,7 +16,9 @@ app.config['SECRET_KEY'] ='ABC123'
 
 
 # app.config['SQLALCHEMY_DATABASE_URI']='postgresql+psycopg2://moringa:1234@localhost/short'
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get("DATABASE_URL")
+SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+if SQLALCHEMY_DATABASE_URI.startswith("postgres://"):
+    SQLALCHEMY_DATABASE_URI = SQLALCHEMY_DATABASE_URI.replace("postgres://", "postgresql://", 1)
 
 db = SQLAlchemy(app)
 migrate = Migrate(app, db)
